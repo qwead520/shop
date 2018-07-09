@@ -1,7 +1,7 @@
 <template>
     <div class="footer w_640">
         <ul>
-            <li><router-link to="/storelist"><i class="nav_icon1"></i>品牌</router-link></li>
+            <li><router-link to="/storelist/1"><i class="nav_icon1"></i>品牌</router-link></li>
             <li><router-link to="/mall"><i class="nav_icon2"></i>分类</router-link></li>
             <li><router-link to="/"><i class="nav_icon3"></i></router-link></li>
             <li><router-link to="/footprint"><i class="nav_icon4"></i>足迹</router-link></li>

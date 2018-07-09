@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-view />
-    <Footer></Footer>
+    <keep-alive><router-view v-on:hiddenFooter="hiddenFooter" /></keep-alive>
+    <Footer v-if="isShow" ></Footer>
   </div>
 </template>
 
@@ -9,9 +9,25 @@
 import Footer from './components/Footer'
 import StoreList from './components/StoreList'
 import Index from './components/Index'
+import Good from './components/Good'
+import Store from './components/Store'
+import Mall from './components/Mall'
+import FootPrint from './components/FootPrint'
+
 export default {
   name: 'App',
-  components: {Index, Footer, StoreList}
+  components: {Index, Footer, StoreList, Good, Store, Mall, FootPrint},
+  data () {
+    return {
+      isShow: true
+    }
+  },
+  methods: {
+    // 某些路由子组件加载时隐藏 footer
+    hiddenFooter () {
+      this.isShow = false
+    }
+  }
 }
 </script>
 
@@ -66,4 +82,5 @@ export default {
   h4 { font-size:14px; }
   .clear { clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
   .w_640{ max-width:640px; min-width:320px; width:100%; margin:0 auto;}
+  .Details_pic img{width: 100%; vertical-align: middle;}
 </style>

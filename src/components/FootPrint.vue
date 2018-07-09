@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Footprint',
+  name: 'FootPrint',
   data () {
     return {
       pageName: 'footprint'

@@ -37,7 +37,7 @@ export default {
   name: 'StoreList',
   data () {
     return {
-      pageName: 'storelist',
+      // 店铺列表
       storeList: [{
         suppliers_id: 1,
         suppliers_name: '小只旗舰店',
