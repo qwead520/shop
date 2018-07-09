@@ -1,0 +1,20 @@
+<template>
+    <div>
+        I'm the {{ pageName }} page;
+    </div>
+</template>
+
+<script>
+export default {
+  name: 'Mall',
+  data () {
+    return {
+      pageName: 'mall'
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

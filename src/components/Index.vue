@@ -1,0 +1,22 @@
+<template>
+  <div>
+      I'm the {{ pageName }} page;
+  </div>
+</template>
+
+<script>
+import Footer from './Footer'
+export default {
+  name: 'Index',
+  components: { Footer },
+  data () {
+    return {
+      pageName: 'index'
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
