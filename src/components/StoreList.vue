@@ -146,6 +146,7 @@ export default {
     .brand_coupon_more a{color:#999;}
     .brand_banner{width: 96%; margin:0 auto; padding-bottom: 2%;}
     .brand_banner a{display: block; line-height: 0px;}
-    .brand_banner a img{width: 360px;height: 123px;}
+    /*.brand_banner a img{width: 360px;height: 123px;}*/
+    .brand_banner a img{width: 100%;}
 
 </style>

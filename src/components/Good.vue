@@ -54,8 +54,7 @@
             </div>
         </div>
         <div class="Details_specification">
-            <div class="Details_parameter"><a onClick="toshare()"><span>产品参数</span><em></em></a></div>
-            <div class="Details_parameter"><a onClick="toshare()"><span>选择颜色分类</span><em></em></a></div>
+            <div class="Details_parameter"><a v-on:click="showAttr"><span>产品参数</span><em></em></a></div>
         </div>
         <div class="Details_Evaluation">
 
@@ -109,14 +108,20 @@
             <div class="Details_footer_cart"><input onClick="toshare()" type="submit" name="" value="加入购物车"></div>
             <div class="Details_footer_buy"><input onClick="toshare()" type="submit" name="" value="立即购买"></div>
         </div>
+        <transition name="attr">
+            <GoodAttr v-if="attrShow" v-on:hiddenAttr="hiddenAttr" v-bind:isShow="this.attrShow"></GoodAttr>
+        </transition>
     </div>
 </template>
 
 <script>
+import GoodAttr from './GoodAttr'
 export default {
   name: 'Good',
+  components: {GoodAttr},
   data () {
     return {
+      attrShow: false,
       // 商品属性
       good: {
         name: '日本安心睡眠内衣女',
@@ -134,7 +139,7 @@ export default {
         lab_hwzy: '品牌清仓',
         desc: '<img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_86742.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_88875.jpg" alt="" /><img src="/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_32832.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_56480.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_12507.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_76923.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_29946.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_98234.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_41790.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083601_74377.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_38870.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_85057.jpg" alt="" /><img src="/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_57346.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_18055.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_67450.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_25384.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_61390.jpg" alt="" /><img src="http://m.renxingsong.cn/business/includes/kindeditor/php/../../../uploads/2/image/20180519/20180519083602_64748.jpg" alt="" />',
         comments_num: 60,
-        isIn: true,
+        isIn: false,
         comments: [{
           username: '丶Tik',
           headurl: 'http://thirdwx.qlogo.cn/mmopen/vi_32/MzQVZhFALRNtuVarhnIHgNl3hYBKwZiaJ02PMHdZtSwIezsUQzwCF8GQfweLksjPaTp2rXM8wk3l7XicmHDU5tEw/0',
@@ -144,6 +149,7 @@ export default {
           add_time: '2018-07-04 15:45:36'
         }]
       },
+      // 底部推荐商品列表
       commends: [{
         goods_id: 1,
         goods_name: '日本安心睡眠内衣女',
@@ -182,7 +188,16 @@ export default {
       }
     }
   },
+  props: {
+    isShow: Boolean
+  },
   methods: {
+    showAttr: function () {
+      this.attrShow = true
+    },
+    hiddenAttr: function () {
+      this.attrShow = false
+    }
   },
   // 组件加载完成触发父组件hiddenFooter方法隐藏父组件的footer
   created () {
@@ -351,4 +366,20 @@ export default {
 
     .star_ul li{margin-right: 10px;float: left;}
     .star_ul img {width: 16px;height: 16px;vertical-align: text-bottom;}
+    .goods_time{
+        text-align:center;
+        line-height: 20px;
+        font-size: 10px;
+        max-height: 20px;
+    }
+    .DetailsGeneral_timeout{
+        float: right;
+        margin-right: 5%;
+    }
+    .DetailsGeneral_timeout .goods_time{
+        font-size: 15px;
+    }
+    .product_list li .goods_time{
+        font-size: 13px;
+    }
 </style>

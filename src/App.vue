@@ -38,7 +38,7 @@ export default {
   * html body { height: 100%; overflow:visible;}
   * html iframe, * html frame {overflow:auto;}
   * html frameset {overflow:hidden;}
-  body {max-width:640px; min-width:320px; margin:0 auto; color:#000; font-size: 12px;}
+  body {max-width:640px; min-width:320px; margin:0 auto; color:#000; font-size: 12px;font: 14px/2 'Microsoft YaHei', 'Arial';}
   input, select {font-size:12px; vertical-align:middle; cursor:pointer; outline: none; padding: 0;}
   input[type=button]{
     -webkit-appearance:none;

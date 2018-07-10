@@ -30,5 +30,4 @@ export default {
     .router-link-active>.nav_icon2{width:36px; height:35px; margin-left:-18px; position:absolute; left:50%; background:url(../assets/nav2_S.png) center center no-repeat;background-size:25px 23px; float:left; display:inline-block;}
     .router-link-active>.nav_icon4{width:36px; height:35px; margin-left:-18px; position:absolute; left:50%; background:url(../assets/nav4_S.png) center center no-repeat;background-size:25px 25px; float:left; display:inline-block;}
     .router-link-active>.nav_icon5{width:36px; height:35px; margin-left:-18px; position:absolute; left:50%; background:url(../assets/nav5_S.png) center center no-repeat;background-size:25px 25px; float:left; display:inline-block;}
-    .w_640{ max-width:640px; min-width:320px; width:100%; margin:0 auto;}
 </style>
