@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--返回上一页开始-->
-        <div class="backtrack"><a href="javascript:history.go(-1)" ></a></div>
+        <div class="backtrack"><a v-on:click="$router.go(-1)" ></a></div>
         <!--返回上一页结束-->
         <!--购物车图标开始-->
         <div class="myshopcar_icon"><a href="#/user/cart" ></a></div>
@@ -105,12 +105,10 @@
             </a>
             </div>
             <div class="Details_footer_icon"><a :href='supplier.qq'><i class="Details_footer_service"></i><span>客服</span></a></div>
-            <div class="Details_footer_cart"><input onClick="toshare()" type="submit" name="" value="加入购物车"></div>
-            <div class="Details_footer_buy"><input onClick="toshare()" type="submit" name="" value="立即购买"></div>
+            <div class="Details_footer_cart"><input type="button" value="加入购物车" v-on:click="showAttr"></div>
+            <div class="Details_footer_buy"><input type="button" value="立即购买" v-on:click="showAttr"></div>
         </div>
-        <transition name="attr">
-            <GoodAttr v-if="attrShow" v-on:hiddenAttr="hiddenAttr" v-bind:isShow="this.attrShow"></GoodAttr>
-        </transition>
+        <GoodAttr v-on:hiddenAttr="hiddenAttr" v-bind:is-show="this.attrShow"></GoodAttr>
     </div>
 </template>
 
@@ -187,9 +185,6 @@ export default {
         height: 400
       }
     }
-  },
-  props: {
-    isShow: Boolean
   },
   methods: {
     showAttr: function () {
@@ -336,8 +331,8 @@ export default {
     .Details_coupon_btn input{width: 70px; height: 70px; background: #fff; margin-right: 5%; font-size: 10px; line-height: 25px; border-radius: 20px; font-size: 10px; border:1px solid #F62449; color: #F62449;}
     .Details_promise{width: 100%; height: 50px; line-height: 50px; border-bottom: 2px solid #f4f4f4;}
     .Details_promise li{ width: 70px; font-size: 12px; color: #ff3289; text-align:center; float: left;}
-    .Details_specification{width: 100%; height: 81px; font-size: 14px; line-height: 40px;  border-bottom:2px solid #f4f4f4;  overflow: hidden;}
-    .Details_parameter{width:96%; height: 40px;  margin: 0 auto; border-bottom: 1px solid #f4f4f4;}
+    .Details_specification{width: 100%; font-size: 14px; line-height: 40px;  border-bottom:2px solid #f4f4f4;  overflow: hidden;}
+    .Details_parameter{width:96%; margin: 0 auto; border-bottom: 1px solid #f4f4f4;}
     .Details_parameter a{display: block;}
     .Details_parameter a em{ width: 30px; height: 40px; margin-right: 2%; background: url(../assets/morepoit.png) no-repeat center; background-size:65%; float: right; display: block;}
     .Details_Evaluation{width: 100%; overflow: hidden;}

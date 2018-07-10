@@ -1,6 +1,6 @@
 <template>
     <div>
-            <div :class="{ sele_specifications, w_640, am_modal_active:isShow }">
+            <div class="sele_specifications w_640" :class="{am_modal_active:isShow, am_modal_out:!isShow }">
                 <div class="sele_specifications_info">
                     <img :src="goodThumb">
                     <strong>￥{{goodPrice}}</strong>
@@ -16,20 +16,23 @@
                 <div class="sele_specifications_nub">
                     <h1>数量</h1>
                     <div class="spinner">
-                        <button class="decrease"-</button>
+                        <button class="decrease">-</button>
                         <input type="text" class="spinnerExample value spinnerExample1" maxlength="2">
                         <button class="increase">+</button>
                     </div>
                 </div>
                 <div class="sele_specifications_btn"><input onclick="addToShopCart(this,20);" type="button" value="确 认"></div>
             </div>
-        <div class="sele_specifications_bg sele_specifications_bg-active" v-on:click="hiddenAttr"></div>
+        <div class="sele_specifications_bg" :class="{ sele_specifications_bg_active:isShow }" v-on:click="hiddenAttr"></div>
     </div>
 </template>
 
 <script>
 export default {
   name: 'GoodAttr',
+  props: [
+    'isShow'
+  ],
   data () {
     return {
       goodThumb: 'http://m.renxingsong.cn/images/201806/1529741885227120692.jpg',
@@ -60,11 +63,11 @@ export default {
 <style scoped>
     /*商品详细页*/
     .Details_select_list{width: 100%; background: #fff; overflow: hidden; position: fixed; bottom: 50px; z-index: 99999;}
-    .sele_specifications { width:100%; height:420px; background:#fff;  font-size: 14px; border-radius: 0; bottom:0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index:999; }
-    .am_modal_active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) ; overflow:auto;}
-    .am_modal_out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+    .sele_specifications { width:100%; height:420px; background:#fff;  font-size: 14px; border-radius: 0; bottom:0; left: 0; position: fixed; text-align: center; width: 100%; z-index:999; }
+    .am_modal_active {  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) ; -webkit-transition: -webkit-transform .5s; transition: transform .5s ;overflow:auto;}
+    .am_modal_out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%);-webkit-transition: -webkit-transform .5s; transition: transform .5s; }
     .sele_specifications_bg { background-color: rgba(0, 0, 0, 0.5); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 8; display:none; }
-    .sele_specifications_bg-active { opacity: 1; display:block; }
+    .sele_specifications_bg_active { opacity: 1; display:block; transition: opacity .5s}
     .sele_specifications_close{ width:26px; height:26px; display:inline-block; position:absolute; top:10px; right:10px;}
     /*.sele_close_btn{ width:26px; height:26px;background:url(../assets/sele_close_btn.png) no-repeat; background-size:26px; border:0;}*/
 
