@@ -194,9 +194,9 @@ export default {
       this.attrShow = false
     }
   },
-  // 组件加载完成触发父组件hiddenFooter方法隐藏父组件的footer
+  // 组件加载完成隐藏父组件的footer
   created () {
-    this.$emit('hiddenFooter')
+    // this.$store.state.footerShow = false
   }
 }
 </script>

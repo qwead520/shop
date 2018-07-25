@@ -1,6 +1,7 @@
 <template>
   <div>
       I'm the {{ pageName }} page;
+    <Footer></Footer>
   </div>
 </template>
 
@@ -18,5 +19,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

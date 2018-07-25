@@ -1,40 +1,45 @@
 <template>
-    <div class="FightSingle_box">
-        <div class="find_nav">
-            <div class="find_nav_left tab1" id="tab1">
-                <div class="find_nav_list DiscountSnacks_nav" style="background-color: #fff;width: 100%;">
-                    <ul>
-                        <li><a href="#/storelist">全部品牌</a></li>
-                        <li class="sideline"></li>
-                    </ul>
-                </div>
-                <div class="FightSingle_contents">
-                    <div class="brand_content" v-if="storeList"> <!--菜单一内容-->
-                        <div class="brand_Shop"  v-for="store in storeList" :key="store.suppliers_id">
-                            <div class="brand_Shop_title">
-                                <div class="brand_logo">
-                                    <img :src="store.suppliers_logo">  <!-- 2018.05.10  张小只-->
-                                    <h3>{{store.suppliers_name}}</h3>
-                                    <span><a>品牌店</a></span>
-                                </div>
-                                <div class="brand_enter"><a :href="'#/store/'+store.suppliers_id">进店看看 ></a></div>
-                            </div>
-                            <div class="brand_banner">
-                                <a :href="store.suppliers_banner_url" v-if="store.suppliers_banner"><img :src="store.suppliers_banner"></a>
-                                <a v-else><img src="http://m.renxingsong.cn/images/no_pic640x350.jpg" /></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="brand_content" id="con_one_{math $smarty.foreach.suppliers.index}" v-else> <!--菜单一内容-->该分类下无产品呢</div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div>
+      <div class="FightSingle_box">
+          <div class="find_nav">
+              <div class="find_nav_left tab1" id="tab1">
+                  <div class="find_nav_list DiscountSnacks_nav" style="background-color: #fff;width: 100%;">
+                      <ul>
+                          <li><a href="#/storelist">全部品牌</a></li>
+                          <li class="sideline"></li>
+                      </ul>
+                  </div>
+                  <div class="FightSingle_contents">
+                      <div class="brand_content" v-if="storeList"> <!--菜单一内容-->
+                          <div class="brand_Shop"  v-for="store in storeList" :key="store.suppliers_id">
+                              <div class="brand_Shop_title">
+                                  <div class="brand_logo">
+                                      <img :src="store.suppliers_logo">  <!-- 2018.05.10  张小只-->
+                                      <h3>{{store.suppliers_name}}</h3>
+                                      <span><a>品牌店</a></span>
+                                  </div>
+                                  <div class="brand_enter"><a :href="'#/store/'+store.suppliers_id">进店看看 ></a></div>
+                              </div>
+                              <div class="brand_banner">
+                                  <a :href="store.suppliers_banner_url" v-if="store.suppliers_banner"><img :src="store.suppliers_banner"></a>
+                                  <a v-else><img src="http://m.renxingsong.cn/images/no_pic640x350.jpg" /></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="brand_content" id="con_one_{math $smarty.foreach.suppliers.index}" v-else> <!--菜单一内容-->该分类下无产品呢</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <Footer></Footer>
+  </div>
 </template>
 
 <script>
+import Footer from './Footer'
 export default {
   name: 'StoreList',
+  components: {Footer},
   data () {
     return {
       // 店铺列表

@@ -1,81 +1,87 @@
 <template>
-    <div class="container">
-        <div class="tpl-shop">
-            <div class="tpl-shop-topbar" style="background-color:#f8f8f8">
-                <a :href="'javascript:collect_store('+$route.params.id+')'" style="color:#000"><i class="fa fa-heart" style="color:red"></i>收藏店铺</a>
-                <a href="javascript:;showCode();" style="color:#000"><i class="fa fa-qrcode" style="color:red"></i>二维码</a>
-            </div>
-            <div class="tpl-shop-header" style="background-color:#FF6666">
-                <div class="tpl-shop-title">
-                    <p>{{storeName}}</p>
-                </div>
-                <div class="tpl-shop-avatar">
-                    <img :src="storeLogo">
-                </div>
-            </div>
-            <div class="tpl-shop-content">
-                <span>商品<b>{{goods_num}}</b></span>
-                <span>销量<b>{{sale_num}}</b></span>
-                <a v-on:click="showShare(true)">分享店铺</a>
-            </div>
-        </div>
-        <div class="store_nav">
-            <a  :class="{cur:isPin}" v-on:click="getPin"><span>拼团商品</span></a>
-            <a  :class="{cur:isOne}" v-on:click="getOne"><span>优惠商品</span></a>
-        </div>
-        <!--拼团-->
-        <div class="good_list" v-show="isPin">
-            <div class="tuan_list">
-                <div class="tuan_g" v-for="goods in goodsTuanList" :key="goods.goods_id">
-                    <div class="tuan_g_img">
-                        <a :href="'#/good/'+goods.goods_id"><img v-lazy="goods.goods_thumb"></a>
-                    </div>
-                    <div class="tuan_g_info">
-                        <p class="tuan_g_name">{{goods.goods_name}}</p>
-                    </div>
-                    <div class="tuan_g_core">
-                        <div class="tuan_g_num">{{goods.team_num}}人团</div>
-                        <div class="tuan_g_price"><i>¥</i>{{goods.team_price}}</div>
-                        <del class="tuan_g_mprice"><i>￥</i>{{goods.shop_price}}</del>
-                    </div>
-                    <a class="tuan_g_btn" :href="'#/good/'+goods.goods_id">立即开团</a>
-                </div>
-            </div>
-            <div class="nothing" v-if="goodsTuanList.length<1">
-                <i class="iconfont icon-shangpin"></i>
-                <p>此分类下暂无商品</p>
-            </div>
-        </div>
-        <!--单独购-->
-        <div class="good_list" v-show="isOne">
-            <ul class="list_B">
-                <li v-for="goods in goodsList" :key="goods.good_id">
-                    <a :href="'#/good/'+goods.goods_id"><img  v-lazy="goods.goods_thumb"></a>
-                    <p class="tit"><a :href="'#/good/'+goods.goods_id">{{goods.goods_name}}</a></p>
-                    <!--p class="brief">{$goods.goods_brief}</p-->
-                    <p>
-                        <font class="price">¥<b>{{goods.shop_price}}</b></font>
-                        <a class="tocartbtn"  v-if="goods.goods_number>0">加入购物车</a>
-                        <a class="mai hui" href="javascript:;" v-else>缺货</a>
-                    </p>
-                </li>
-                <div class="nothing" v-if="goodsList.length<1">
-                    <i class="iconfont icon-shangpin"></i>
-                    <p>此分类下暂无商品</p>
-                </div>
-            </ul>
-        </div>
-        <div class="share_img" v-if="shareShow" v-on:click="showShare(false)">
-            <p><img class="arrow" src="../assets/share.png" ></p>
-            <p style="margin-top:20px; margin-right:50px;">点击右上角，</p>
-            <p style="margin-right:50px;">将此店铺分享给好友</p>
-        </div>
-    </div>
+  <div>
+      <div class="container">
+          <div class="tpl-shop">
+              <div class="tpl-shop-topbar" style="background-color:#f8f8f8">
+                  <a :href="'javascript:collect_store('+$route.params.id+')'" style="color:#000"><i class="fa fa-heart" style="color:red"></i>收藏店铺</a>
+                  <a href="javascript:;showCode();" style="color:#000"><i class="fa fa-qrcode" style="color:red"></i>二维码</a>
+              </div>
+              <div class="tpl-shop-header" style="background-color:#FF6666">
+                  <div class="tpl-shop-title">
+                      <p>{{storeName}}</p>
+                  </div>
+                  <div class="tpl-shop-avatar">
+                      <img :src="storeLogo">
+                  </div>
+              </div>
+              <div class="tpl-shop-content">
+                  <span>商品<b>{{goods_num}}</b></span>
+                  <span>销量<b>{{sale_num}}</b></span>
+                  <a v-on:click="showShare(true)">分享店铺</a>
+              </div>
+          </div>
+          <div class="store_nav">
+              <a  :class="{cur:isPin}" v-on:click="getPin"><span>拼团商品</span></a>
+              <a  :class="{cur:isOne}" v-on:click="getOne"><span>优惠商品</span></a>
+          </div>
+          <!--拼团-->
+          <div class="good_list" v-show="isPin">
+              <div class="tuan_list">
+                  <div class="tuan_g" v-for="goods in goodsTuanList" :key="goods.goods_id">
+                      <div class="tuan_g_img">
+                        <router-link :to="{ path: '/good/' + goods.good_id }"><img v-lazy="goods.goods_thumb"></router-link>
+                      </div>
+                      <div class="tuan_g_info">
+                          <p class="tuan_g_name">{{goods.goods_name}}</p>
+                      </div>
+                      <div class="tuan_g_core">
+                          <div class="tuan_g_num">{{goods.team_num}}人团</div>
+                          <div class="tuan_g_price"><i>¥</i>{{goods.team_price}}</div>
+                          <del class="tuan_g_mprice"><i>￥</i>{{goods.shop_price}}</del>
+                      </div>
+                      <router-link class="tuan_g_btn" :to="{ path: '/good/' + goods.good_id }">立即开团</router-link>
+                  </div>
+              </div>
+              <div class="nothing" v-if="goodsTuanList.length<1">
+                  <i class="iconfont icon-shangpin"></i>
+                  <p>此分类下暂无商品</p>
+              </div>
+          </div>
+          <!--单独购-->
+          <div class="good_list" v-show="isOne">
+              <ul class="list_B">
+                  <li v-for="goods in goodsList" :key="goods.good_id">
+                      <router-link :to="{ path: '/good/' + goods.good_id }"><img  v-lazy="goods.goods_thumb" /></router-link>
+                      <p class="tit"><router-link :to="'/good/' + goods.good_id">{{goods.goods_name}}</router-link></p>
+                      <!--p class="brief">{$goods.goods_brief}</p-->
+                      <p>
+                          <font class="price">¥<b>{{goods.shop_price}}</b></font>
+                          <del class="mprice"><i>￥</i>{{goods.market_price}}</del>
+                          <a class="btn"  v-if="goods.goods_number>0">加入购物车</a>
+                          <a class="mai hui" href="javascript:;" v-else>缺货</a>
+                      </p>
+                  </li>
+                  <div class="nothing" v-if="goodsList.length<1">
+                      <i class="iconfont icon-shangpin"></i>
+                      <p>此分类下暂无商品</p>
+                  </div>
+              </ul>
+          </div>
+          <div class="share_img" v-if="shareShow" v-on:click="showShare(false)">
+              <p><img class="arrow" src="../assets/share.png" ></p>
+              <p style="margin-top:20px; margin-right:50px;">点击右上角，</p>
+              <p style="margin-right:50px;">将此店铺分享给好友</p>
+          </div>
+      </div>
+      <Footer></Footer>
+  </div>
 </template>
 
 <script>
+import Footer from './Footer'
 export default {
   name: 'Store',
+  components: {Footer},
   data () {
     return {
       goodsList: [],
@@ -125,7 +131,8 @@ export default {
           goods_thumb: 'http://m.renxingsong.cn/images/201805/1527471155117433080.jpg',
           goods_name: '超帅超帅的小哥哥一只',
           goods_number: 3,
-          shop_price: 998
+          shop_price: 68,
+          market_price: 98
         })
         this.isPin = false
       }
@@ -139,30 +146,57 @@ export default {
 
 <style scoped>
     .list_B{  }
-    .list_B li{float:left;width:48%;margin-bottom:1px; background: #fff; padding-bottom: 3px; position:relative;margin:1% 1%;}
+    .list_B li{
+      float: left;
+      width: 48%;
+      border: 1px solid #d6d6d6;
+      background: #fff;
+      padding-bottom: 3px;
+      position: relative;
+      margin: 1% 1%;
+    }
     .list_B li:nth-child(2n){margin-left:0.5%;}
     .list_B li img{width:100%;display:block;}
-    .list_B li p { width: 96%; padding: 0 2%; }
+    .list_B li p { width: 100%; padding: 0 2%; }
     .list_B li del { float: right;line-height: 30px; }
     .top_search{padding:10px 5px 5px 5px;position:relative;}
     .top_search .text{width:96%;padding:0 2%;height:40px;line-height:40px;background:#fff;border-radius:8px;font-size:14px;border:none;}
     .top_search .submit{width:40px;height:40px;position:absolute;right:10px;top:18px;background:url(../assets/top_s.png) no-repeat;background-size:60%;border:none;text-indent:-9999em;}
+    .good_list{overflow: hidden;}
     .good_list h3 {width:100%;height:40px;line-height:40px;border-bottom:#eee 1px solid;margin-bottom:1px;}
     .good_list .tit{font-size:14px;height:40px;line-height:20px;overflow:hidden;}
     .good_list .tit i { padding:2px 4px;background: #FF6666; color:#fff; border-radius:12px; font-size:12px; }
     .good_list .brief{height:40px;line-height:20px;overflow:hidden;}
-    .good_list .price{color:#FF6666;font-size:14px;}
+    .good_list .price{
+      color: #FF6666;
+      font-size: 14px;
+      float: left;
+    }
     .good_list .price b{font-size:20px;}
-    .good_list .buy1{
-        width:60%;
-        height:22px;
-        line-height: 22px;
-        color:#fff;
-        background-color: #FF6666;
-        display:block;
-        border-radius:20px;
-        text-align: center;
-        margin:10px auto 0;
+    .good_list .mprice{
+      display: inline-block;
+      color: #999;
+      font-size: 10px;
+      height: 30px;
+      line-height: 45px;
+      float: left;
+      padding-left: 5px;
+    }
+    .good_list .btn{
+      width: 40%;
+      display: inline-block;
+      float: right;
+      border-radius: 3px;
+      height: 28px;
+      line-height: 28px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      background: -webkit-linear-gradient(left, #FF5353 , #FF2B95);
+      background: -o-linear-gradient(right, #FF5353 , #FF2B95);
+      background: -moz-linear-gradient(right, #FF5353 , #FF2B95);
+      background: linear-gradient(to right, #FF5353 , #FF2B95);
+      text-align: center;
     }
     .good_list .hui{
         background-color: #ccc;
@@ -295,6 +329,7 @@ export default {
         background-color: #FFF;
         float: left;
         margin: 1%;
+        border: 1px solid #d6d6d6;
     }
 
     .tuan_g_img {
@@ -356,12 +391,12 @@ export default {
     }
 
     .tuan_g_core {
-        display: block;
-        margin-top: 10px;
-        position: relative;
-        height:40px;
-        color:#ff6666;
-        background-color: #f9f9f9;
+      display: block;
+      margin-top: 5px;
+      position: relative;
+      height: 30px;
+      color: #ff6666;
+      background-color: #f9f9f9;
     }
     .tuan_g_core .line { width: 1px; float:left;height:30px;margin-top:5px;margin-left: 2%; border-left: #eee 1px solid; overflow: hidden;}
     .tuan_g_core:before {
@@ -369,31 +404,34 @@ export default {
         float:left;
         margin-left:5px;
         margin-top: 5px;
-        width:30px;
-        height:30px;
+        width:20px;
+        height:20px;
         background-image: url(../assets/people.png);
         background-size: 100%;
     }
 
     .tuan_g_num{
-        float:left;padding-left:2%;line-height:40px;font-size: 16px;
+      float: left;
+      padding-left: 2%;
+      line-height: 30px;
+      font-size: 14px;
     }
 
     .tuan_g_mprice {
-        display: inline-block;
-        color: #999;
-        line-height: 45px;
-        font-size: 12px;
-        padding-left: 5px;
+      display: inline-block;
+      color: #999;
+      line-height: 36px;
+      font-size: 12px;
+      padding-left: 5px;
     }
 
     .tuan_g_price {
-        float:left;
-        height:100%;
-        padding-left: 8%;
-        line-height: 40px;
-        color:#ff4422;
-        font-size: 18px;
+      float: left;
+      height: 100%;
+      padding-left: 8%;
+      line-height: 32px;
+      color: #ff4422;
+      font-size: 18px;
     }
 
     .tuan_g_price i {
@@ -401,21 +439,20 @@ export default {
     }
 
     .tuan_g_btn {
-        width: 50%;
-        height: 28px;
-        line-height: 28px;
-        border-radius: 100px;
-        color: #fff;
-        font-size: 12px;
-        font-weight: bold;
-        background: -webkit-linear-gradient(left, #FF5353 , #FF2B95);
-        background: -o-linear-gradient(right, #FF5353 , #FF2B95);
-        background: -moz-linear-gradient(right, #FF5353 , #FF2B95);
-        background: linear-gradient(to right, #FF5353 , #FF2B95);
-        display: block;
-        text-align: center;
-        margin-left: 25%;
-        margin-bottom: 3px;
+      width: 98%;
+      height: 28px;
+      line-height: 28px;
+      border-radius: 3px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      background: -webkit-linear-gradient(left, #FF5353 , #FF2B95);
+      background: -o-linear-gradient(right, #FF5353 , #FF2B95);
+      background: -moz-linear-gradient(right, #FF5353 , #FF2B95);
+      background: linear-gradient(to right, #FF5353 , #FF2B95);
+      display: block;
+      margin: 3px auto 1px auto;
+      text-align: center;
     }
     .tocartbtn{
         width: 40%;

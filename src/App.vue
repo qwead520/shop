@@ -1,7 +1,6 @@
 <template>
   <div>
-    <keep-alive><router-view v-on:hiddenFooter="hiddenFooter" /></keep-alive>
-    <Footer v-if="isShow" ></Footer>
+    <keep-alive><router-view /></keep-alive>
   </div>
 </template>
 
@@ -18,15 +17,10 @@ export default {
   name: 'App',
   components: {Index, Footer, StoreList, Good, Store, Mall, FootPrint},
   data () {
-    return {
-      isShow: true
-    }
+
   },
   methods: {
-    // 某些路由子组件加载时隐藏 footer
-    hiddenFooter () {
-      this.isShow = false
-    }
+
   }
 }
 </script>
@@ -34,7 +28,7 @@ export default {
 <style>
   @import url('assets/fonts/iconfont.css');
   @import url('assets/css/font-awesome.min.css');
-  * {margin:0; padding:0;}
+  * {margin:0; padding:0;-webkit-box-sizing: border-box;box-sizing: border-box;}
   * html body { height: 100%; overflow:visible;}
   * html iframe, * html frame {overflow:auto;}
   * html frameset {overflow:hidden;}
