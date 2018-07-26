@@ -17,7 +17,7 @@ export default {
   name: 'App',
   components: {Index, Footer, StoreList, Good, Store, Mall, FootPrint},
   data () {
-
+    return {}
   },
   methods: {
 

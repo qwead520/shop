@@ -23,6 +23,9 @@ export default new Router({
       component: StoreList
     },
     {
+      path: '/mall', redirect: '/mall/0'
+    },
+    {
       path: '/mall/:id',
       name: 'Mall',
       component: Mall
@@ -38,6 +41,9 @@ export default new Router({
       component: User
     },
     {
+      path: '/store', redirect: '/storelist/1'
+    },
+    {
       path: '/store/:id',
       name: 'Store',
       component: Store
@@ -45,11 +51,12 @@ export default new Router({
     {
       path: '/good/:id',
       name: 'Good',
-      component: Good,
-      beforeEnter: (to, from, next) => {
-        this.$store.commit('setFooter', false)
-        next()
-      }
+      component: Good
+    },
+    {
+      path: '*',
+      name: '404',
+      redirect: '/'
     }
   ]
 })

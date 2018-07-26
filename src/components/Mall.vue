@@ -10,12 +10,8 @@
         </div>
         <!--左侧-->
         <div class="l_left" id="con_left">
-          <ul class="job_sub" id="scroller1">
-            <li class="on" id="quan"> <a href="">全部</a></li>
-            <li><a href="">女装</a></li>
-            <li><a href="">情趣用品</a></li>
-            <li><a href="">内衣</a></li>
-            <li><a href="">百货</a></li>
+          <ul class="job_sub">
+            <li v-for="cat in cat_list" :key="cat.cat_id" :class="{ on: selectCat(cat.cat_id) }" :id="cat.cat_id"> <a :href="'#/mall/'+cat.cat_id">{{cat.title}}</a></li>
           </ul>
         </div>
         <!--右侧-->
@@ -23,27 +19,15 @@
           <div class="rightBox" id="scroller">
             <div class="product_list">
               <ul>
-                <li>
-                  <a href="goods.php?id=20&amp;uid=0">
-                    <img src="http://m.renxingsong.cn/images/201806/1529741885227120692.jpg">
-                    <h3>香蕉计划延时湿巾</h3>
+                <li v-for="good in goods_list" :key="good.goods_id">
+                  <a :href="'#/good/'+good.goods_id">
+                    <img :src="good.goods_thumb">
+                    <h3>{{good.goods_name}}</h3>
                   </a>
-                  <span style="font-size:10px">剩余：</span><span class="goods_time" id="leftTime0"><b>51</b>:<b>12</b>:<b>27</b></span>
+                  <span style="font-size:10px">剩余：</span><span class="goods_time" id="leftTime0">{{good.goods_time}}</span>
                   <div class="product_price_info">
-                    <div class="product_price"><span>￥15</span>&nbsp;&nbsp;<span style="text-decoration: line-through;font-size: 10px;color: #999;">￥18</span></div>
-                    <div class="product_volume"><em>已售</em><span>204</span></div>
-                  </div>
-                </li>
-                <li>
-                  <a href="goods.php?id=19&amp;uid=0">
-                    <img src="http://m.renxingsong.cn/images/201806/1528855761553597164.jpg">
-                    <h3>香蕉计划0.02超薄避孕套无硅油安全套002男用廷时装成人延长湿巾</h3>
-
-                  </a>
-                  <span style="font-size:10px">剩余：</span><span class="goods_time" id="leftTime1"><b>3</b>:<b>33</b>:<b>57</b></span>
-                  <div class="product_price_info">
-                    <div class="product_price"><span>￥68</span>&nbsp;&nbsp;<span style="text-decoration: line-through;font-size: 10px;color: #999;">￥68</span></div>
-                    <div class="product_volume"><em>已售</em><span>203</span></div>
+                    <div class="product_price"><span>￥{{good.goods_team_price || good.goods_shop_price }}</span>&nbsp;&nbsp;<span style="text-decoration: line-through;font-size: 10px;color: #999;">￥{{good.goods_market_price}}</span></div>
+                    <div class="product_volume"><em>已售</em><span>{{good.goods_sales_num}}</span></div>
                   </div>
                 </li>
               </ul>
@@ -62,14 +46,175 @@ export default {
   components: {Footer},
   data () {
     return {
-      pageName: 'mall',
-      cat: [
+      goods_list: [],
+      cat_list: []
+    }
+  },
+  methods: {
+    getGoodListById (id) {
+      var data
+      switch (parseInt(id)) {
+        case 0:
+          data = [
+            {
+              goods_id: 1,
+              goods_thumb: 'http://m.renxingsong.cn/images/201807/1531715475611467235.jpg',
+              goods_name: '测试测试',
+              goods_time: '28:18:49',
+              goods_market_price: 39,
+              goods_shop_price: 19,
+              goods_team_price: 15,
+              goods_sales_num: 124
+            },
+            {
+              goods_id: 2,
+              goods_thumb: 'http://m.renxingsong.cn/images/201805/1527471155117433080.jpg',
+              goods_name: '超帅超帅的小哥哥一只',
+              goods_time: '30:18:49',
+              goods_market_price: 39,
+              goods_shop_price: 20,
+              goods_team_price: 16,
+              goods_sales_num: 125
+            }]
+          break
+        case 1:
+          data = [
+            {
+              goods_id: 3,
+              goods_thumb: 'http://m.renxingsong.cn/images/201807/1531715475611467235.jpg',
+              goods_name: '测试测试',
+              goods_time: '28:18:49',
+              goods_market_price: 39,
+              goods_shop_price: 21,
+              goods_team_price: 17,
+              goods_sales_num: 126
+            },
+            {
+              goods_id: 4,
+              goods_thumb: 'http://m.renxingsong.cn/images/201807/1532507671841929136.jpg',
+              goods_name: '南极人防寒足贴保暖御寒足贴',
+              goods_time: '10:18:49',
+              goods_market_price: 39,
+              goods_shop_price: 22,
+              goods_team_price: 18,
+              goods_sales_num: 127
+            }]
+          break
+        case 2:
+          data = [
+            {
+              goods_id: 5,
+              goods_thumb: 'http://m.renxingsong.cn/images/201807/1531715475611467235.jpg',
+              goods_name: '测试测试',
+              goods_time: '28:18:49',
+              goods_market_price: 77,
+              goods_shop_price: 41,
+              goods_team_price: 58,
+              goods_sales_num: 129
+            },
+            {
+              goods_id: 6,
+              goods_thumb: 'http://m.renxingsong.cn/images/201805/1527471155117433080.jpg',
+              goods_name: '超帅超帅的小哥哥一只',
+              goods_time: '30:18:49',
+              goods_market_price: 69,
+              goods_shop_price: 28,
+              goods_team_price: 68,
+              goods_sales_num: 189
+            }]
+          break
+        case 3:
+          data = [
+            {
+              goods_id: 7,
+              goods_thumb: 'http://m.renxingsong.cn/images/201807/1532329491799991208.jpg',
+              goods_name: '南极人儿童雨衣儿童雨衣男童女童幼儿园宝宝小学生小孩子带书包位时尚雨披',
+              goods_time: '69:18:49',
+              goods_market_price: 34,
+              goods_shop_price: 45,
+              goods_team_price: 98,
+              goods_sales_num: 457
+            },
+            {
+              goods_id: 8,
+              goods_thumb: 'http://m.renxingsong.cn/images/201807/1532329901215654923.jpg',
+              goods_name: '真丝刺绣冰敷眼罩   睡觉冰袋缓解眼疲劳',
+              goods_time: '20:18:49',
+              goods_market_price: 96,
+              goods_shop_price: 27,
+              goods_team_price: 52,
+              goods_sales_num: 169
+            }]
+          break
+        case 4:
+          data = [
+            {
+              goods_id: 9,
+              goods_thumb: 'http://m.renxingsong.cn/images/201805/1526718821568842950.jpg',
+              goods_name: '日本安心睡眠女式内衣',
+              goods_time: '14:18:49',
+              goods_market_price: 78,
+              goods_shop_price: 45,
+              goods_team_price: 36,
+              goods_sales_num: 145
+            },
+            {
+              goods_id: 10,
+              goods_thumb: 'http://m.renxingsong.cn/images/201805/1527471155117433080.jpg',
+              goods_name: '超帅超帅的小哥哥一只',
+              goods_time: '30:18:49',
+              goods_market_price: 19,
+              goods_shop_price: 44,
+              goods_team_price: 45,
+              goods_sales_num: 189
+            }]
+          break
+        default :
+          data = []
+      }
+      return data
+    },
+    getCatById (id) {
+      return [
         {
           cat_id: 0,
           title: '全部'
+        },
+        {
+          cat_id: 1,
+          title: '女装'
+        },
+        {
+          cat_id: 2,
+          title: '情趣用品'
+        },
+        {
+          cat_id: 3,
+          title: '内衣'
+        },
+        {
+          cat_id: 4,
+          title: '百货'
         }
       ]
+    },
+    selectCat (id) {
+      return id === parseInt(this.$route.params.id)
     }
+  },
+  created () {
+    this.goods_list = this.goods_list.concat(this.getGoodListById(this.$route.params.id))
+    this.cat_list = this.cat_list.concat(this.getCatById(this.$route.params.id))
+  },
+  mounted () {
+  },
+  computed: {
+
+  },
+  beforeRouteUpdate (tp, from, next) {
+    this.goods_list = this.goods_list.splice(this.goods_list.length).concat(this.getGoodListById(this.$route.params.id))
+    this.cat_list = this.cat_list.splice(this.cat_list.length).concat(this.getCatById(this.$route.params.id))
+    next()
   }
 }
 </script>
@@ -99,10 +244,6 @@ export default {
   .bai_heig{height:10px;}
   .top_border{}
   .disp{display:none;}
-
-
-
-
   .page_cons{height:50px;line-height:50px;table-layout: fixed;background-color:#e5e5e5;width:95%;padding:0 2.5%;position:relative;border-bottom:1px solid #bfbfbf;}
   #mou_input{display: -webkit-box;display:-moz-box;display:box;-webkit-box-flex: 1;-moz-box-flex: 1;box-flex:1;-webkit-appearance:none;box-shadow:none;outline:none;border:2px solid #bfbfbf;height:28px;padding:0 0 0 8px;margin:9px 0px 9px 60px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:#c2c2c2;font-size:14px;}
   #clear_val2{display: block;position:absolute;top:7px;right:0px;width:35px;height:35px;background:url('http://rep.mmb.cn/wap/upload/touch/newWap/icon/scfd2.png') no-repeat center center;background-size: 18px auto;border:0;-webkit-appearance:none;box-shadow:none;padding:0;}
@@ -139,8 +280,6 @@ export default {
   #no_ser{text-align: center;padding:50px 0;color:#999;}
   #no_ser img{width:50px;padding-bottom:20px;}
 
-
-
   /*分类顶部搜索栏目*/
   .classify_top_bar{width:100%; height:45px; border-bottom:1px solid #f2f2f2; position:fixed; top:0px; z-index:99999;}
   .classify_back{width:15%; height:45px; float:left;}
@@ -162,7 +301,7 @@ export default {
   /*产品列表*/
   .product_like_title{ height: 45px; background: url(../assets/product_like_title.png) no-repeat center; background-size: 50%;}
   .product_list {background: #f4f4f4; overflow:hidden;}
-  .product_list li{width: 48.5%; background: #fff; margin-left: 1%; margin-top:1%; float: left;text-align: center;position: relative;}
+  .product_list li{width: 48.5%; background: #fff; margin-left: 1%; margin-top:1%; float: left;text-align: center;position: relative;border: 1px solid #dad6d6;}
   /*.product_list li a{display: block;/*line-height: 0px;text-align:left}*/
   .product_list li a img{width: 100%;}
   /*.product_list li a { width: 96%; margin-top: 5px; margin-left:2%;line-height:18px; font-size: 12px; font-weight: bolder; display: -webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp:1;overflow: hidden;}*/
