@@ -11,7 +11,7 @@
         <!--左侧-->
         <div class="l_left" id="con_left">
           <ul class="job_sub">
-            <li v-for="cat in cat_list" :key="cat.cat_id" :class="{ on: selectCat(cat.cat_id) }" :id="cat.cat_id"> <a :href="'#/mall/'+cat.cat_id">{{cat.title}}</a></li>
+            <li v-for="cat in cat_list" :key="cat.cat_id" :class="{ on: selectCat(cat.cat_id) }" :id="cat.cat_id"> <router-link :to="{ path: '/mall/'+cat.cat_id }">{{cat.title}}</router-link></li>
           </ul>
         </div>
         <!--右侧-->
@@ -20,10 +20,10 @@
             <div class="product_list">
               <ul>
                 <li v-for="good in goods_list" :key="good.goods_id">
-                  <a :href="'#/good/'+good.goods_id">
+                  <router-link :to="{ path: '/good/'+good.goods_id }">
                     <img :src="good.goods_thumb">
                     <h3>{{good.goods_name}}</h3>
-                  </a>
+                  </router-link>
                   <span style="font-size:10px">剩余：</span><span class="goods_time" id="leftTime0">{{good.goods_time}}</span>
                   <div class="product_price_info">
                     <div class="product_price"><span>￥{{good.goods_team_price || good.goods_shop_price }}</span>&nbsp;&nbsp;<span style="text-decoration: line-through;font-size: 10px;color: #999;">￥{{good.goods_market_price}}</span></div>

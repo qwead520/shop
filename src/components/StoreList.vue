@@ -1,37 +1,35 @@
 <template>
-  <div>
-      <div class="FightSingle_box">
-          <div class="find_nav">
-              <div class="find_nav_left tab1" id="tab1">
-                  <div class="find_nav_list DiscountSnacks_nav" style="background-color: #fff;width: 100%;">
-                      <ul>
-                          <li><a href="#/storelist">全部品牌</a></li>
-                          <li class="sideline"></li>
-                      </ul>
-                  </div>
-                  <div class="FightSingle_contents">
-                      <div class="brand_content" v-if="storeList"> <!--菜单一内容-->
-                          <div class="brand_Shop"  v-for="store in storeList" :key="store.suppliers_id">
-                              <div class="brand_Shop_title">
-                                  <div class="brand_logo">
-                                      <img :src="store.suppliers_logo">  <!-- 2018.05.10  张小只-->
-                                      <h3>{{store.suppliers_name}}</h3>
-                                      <span><a>品牌店</a></span>
-                                  </div>
-                                  <div class="brand_enter"><a :href="'#/store/'+store.suppliers_id">进店看看 ></a></div>
-                              </div>
-                              <div class="brand_banner">
-                                  <a :href="store.suppliers_banner_url" v-if="store.suppliers_banner"><img :src="store.suppliers_banner"></a>
-                                  <a v-else><img src="http://m.renxingsong.cn/images/no_pic640x350.jpg" /></a>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="brand_content" id="con_one_{math $smarty.foreach.suppliers.index}" v-else> <!--菜单一内容-->该分类下无产品呢</div>
-                  </div>
-              </div>
-          </div>
+  <div style="position: relative;overflow: hidden;">
+    <div class="hotsupplier">
+      <div class="logo">
+        <span>精选店铺</span>
+        <span>HOT BRAND</span>
       </div>
-      <Footer></Footer>
+    </div>
+    <div class="supplierlist" v-if="storeList">
+      <div class="suppliercontent" v-for="store in storeList" :key="store.suppliers_id">
+        <div class="supplierinfo" v-bind:style="{ backgroundImage: 'url(' + returnBanner(store.suppliers_banner) + ')' }">
+          <router-link :to="{ path: '/store/'+ store.suppliers_id}">
+            <section class="supplierlogo">
+              <img :src="store.suppliers_logo" />
+            </section>
+            <h3 class="suppliername">{{store.suppliers_name}}</h3>
+            <article class="supplierdesc">{{store.suppliers_desc}}</article>
+          </router-link>
+        </div>
+        <div class="bannergoodslist" :class="{ isempty: !store.goods_list }">
+          <div class="bannergoods" v-for="good of store.goods_list" :key="good.goods_id">
+            <router-link :to="{ path: '/good/'+ good.goods_id }">
+              <img :src="good.goods_thumb" />
+              <span class="price">￥{{ good.team_price || good.shop_price }}</span>
+              <span class="tag">热销</span>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand_content"  v-else> <!--菜单一内容-->该分类下无产品呢</div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -45,22 +43,68 @@ export default {
       // 店铺列表
       storeList: [{
         suppliers_id: 1,
-        suppliers_name: '小只旗舰店',
-        suppliers_logo: 'http://m.renxingsong.cn/data/business_file/1528727816220229345.jpg',
-        suppliers_banner: 'http://m.renxingsong.cn/images/201806/1528768452491549761.jpg',
-        suppliers_banner_url: '#'
+        suppliers_name: 'SheLins成人用品品牌专卖店',
+        suppliers_logo: 'http://m.renxingsong.cn/data/business_file/1532074542082432653.jpg',
+        suppliers_banner: '',
+        suppliers_desc: '本店主营女性AV棒，男性后庭，飞机杯，缩阴球等成人用品。品牌有LEVETT, SheLins， FUN-MATES and Sinjoys。\n' +
+        '工厂直营销售，质量保证，价格实惠！',
+        goods_list: [
+          {
+            goods_id: 1,
+            goods_thumb: 'http://m.renxingsong.cn/images/201807/1532505035267320818.jpg',
+            team_price: 19,
+            shop_price: 25
+          },
+          {
+            goods_id: 2,
+            goods_thumb: 'http://m.renxingsong.cn/images/201807/1532504875743264310.jpg',
+            team_price: 19,
+            shop_price: 25
+          }
+        ]
       },
       {
         suppliers_id: 2,
-        suppliers_name: '小只专卖店',
+        suppliers_name: '南极人日常用品品牌专卖店',
         suppliers_logo: 'http://m.renxingsong.cn/data/business_file/1528727816220229345.jpg',
-        suppliers_banner: 'http://m.renxingsong.cn/images/201806/1528768452491549761.jpg',
-        suppliers_banner_url: '#'
+        suppliers_banner: '',
+        suppliers_desc: '上海南极人医疗器械有限公司。专业研发医用人体护托全系列产品，有软护托、硬护托和矫形护托，这些产品适用于原发性骨关节 病、创伤骨关节病变（含软组织创伤、骨折）和变型骨关节病的治疗、康复及预防。公司拥有精湛的医学专家和技术人才，他们具有高深的骨科学、解剖学、关节生 理学、生物力学和教材学的专门知识和丰富的临床经验。 企业宗旨：坚持质量第一，顾客至上，真诚为合作商提供最优良的产品和服务。 企业理念：爱在关怀，健康于你。',
+        goods_list: [
+          {
+            goods_id: 3,
+            goods_thumb: 'http://m.renxingsong.cn/images/201807/1532329491799991208.jpg',
+            team_price: 19,
+            shop_price: 25
+          },
+          {
+            goods_id: 4,
+            goods_thumb: 'http://m.renxingsong.cn/images/201807/1532329901215654923.jpg',
+            team_price: 19,
+            shop_price: 25
+          },
+          {
+            goods_id: 5,
+            goods_thumb: 'http://m.renxingsong.cn/images/201807/1532608335602489679.jpg',
+            team_price: 0,
+            shop_price:15
+          },
+          {
+            goods_id: 6,
+            goods_thumb: 'http://m.renxingsong.cn/images/201807/1532608335602489679.jpg',
+            team_price: 0,
+            shop_price:15
+          }
+        ]
       }],
       storeBand: [{
         title: '全部品牌',
-        url: '#/storelist/1'
+        band_id: 0
       }]
+    }
+  },
+  methods: {
+    returnBanner (storeBanner) {
+      return storeBanner ||  'http://m.renxingsong.cn/themes/haohainew/images/bannerbg.jpg'
     }
   }
 }
@@ -153,5 +197,22 @@ export default {
     .brand_banner a{display: block; line-height: 0px;}
     /*.brand_banner a img{width: 360px;height: 123px;}*/
     .brand_banner a img{width: 100%;}
+
+    .hotsupplier{width:100%;height:50px;border-left:5px solid #696969;margin-left: 2%;margin-top:5px;}
+    .hotsupplier .logo{height:100%;width:100px;}
+    .hotsupplier .logo span{width: 100%;display: inline-block;text-align: center;font-size:15px;font-weight:800;line-height:50%;}
+    .supplierlist{width: 100%;height: auto;float: left;margin-bottom: 60px;}
+    .suppliercontent{height: 100%;width: 96%;margin: 0 auto;padding: 20px 0 0 0}
+    .supplierinfo{height:auto;width:100%;background-position: center;background-repeat: no-repeat;background-size: 100% 100%; border-radius: 30px 30px 0 0;text-align: center;border: 1px solid #d2d1d1;}
+    .supplierlogo{height: 80px;width: 100%;text-align: center}
+    .supplierlogo img{height: 60px;width: 60px;padding: 15px;border:0;}
+    .suppliername{font-size: 19px;color: #fff;font-weight: bold;font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    .supplierdesc{text-indent: 2em;color: #fff;font-size: 13px;text-overflow: ellipsis;height: 78px;width: 100%;word-wrap: break-word;word-break: break-all;overflow: scroll;}
+    .bannergoodslist{height: 160px;width: 100%;border: 1px solid #d2d1d1;border-top: 0;}
+    .isempty{height: 0px!important;border:0!important;}
+    .bannergoods{width: 33%;float: left;padding: 5px 0;text-align:center}
+    .bannergoods img{width: 100%;}
+    .bannergoods .price{font-size: 19px;color: #000;font-family: Comic Sans MS;display: inline-block;margin-top: -8px;float:  left;}
+    .bannergoods .tag{height: 18px;width: 35px;display: inline-block;text-align: center;background: #6a6b6b;border-radius: 3px;color: #fff;font-size: 10px;line-height: 18px;}
 
 </style>

@@ -18,6 +18,9 @@ export default new Router({
       component: Index
     },
     {
+      path: '/storelist', redirect: '/storelist/0'
+    },
+    {
       path: '/storelist/:id',
       name: 'StoreList',
       component: StoreList
