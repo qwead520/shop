@@ -5,12 +5,8 @@ import vuex from 'vuex'
 import App from './App'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-require('swiper/dist/css/swiper.css')
 
 Vue.use(vuex)
-Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
   error: require('@/assets/loading.gif'),

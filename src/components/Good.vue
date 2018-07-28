@@ -114,9 +114,11 @@
 
 <script>
 import GoodAttr from './GoodAttr'
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'Good',
-  components: {GoodAttr},
+  components: { GoodAttr, swiper, swiperSlide},
   data () {
     return {
       attrShow: false,
@@ -169,9 +171,15 @@ export default {
 
       // 轮播配置
       swiperOption: {
-        pagination: '.swiper-pagination',
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
         paginationClickable: true,
-        autoplay: 1500,
+        autoplay: {
+          delay: 1500,
+          stopOnLastSlider: false
+        },
         autoplayDisableOnInteraction: false,
         coverflow: {
           rotate: 30,

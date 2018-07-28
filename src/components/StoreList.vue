@@ -86,13 +86,13 @@ export default {
             goods_id: 5,
             goods_thumb: 'http://m.renxingsong.cn/images/201807/1532608335602489679.jpg',
             team_price: 0,
-            shop_price:15
+            shop_price: 15
           },
           {
             goods_id: 6,
             goods_thumb: 'http://m.renxingsong.cn/images/201807/1532608335602489679.jpg',
             team_price: 0,
-            shop_price:15
+            shop_price: 15
           }
         ]
       }],
@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     returnBanner (storeBanner) {
-      return storeBanner ||  'http://m.renxingsong.cn/themes/haohainew/images/bannerbg.jpg'
+      return storeBanner || 'http://m.renxingsong.cn/themes/haohainew/images/bannerbg.jpg'
     }
   }
 }
