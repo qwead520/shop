@@ -5,17 +5,18 @@
 </template>
 
 <script>
-import Footer from './components/Footer'
-import StoreList from './components/StoreList'
-import Index from './components/Index'
-import Good from './components/Good'
-import Store from './components/Store'
-import Mall from './components/Mall'
-import FootPrint from './components/FootPrint'
+// import index from './components/Index'
+/*import footer from './components/Footer'
+import storeList from './components/StoreList'
+import good from './components/Good'
+import store from './components/Store'
+import mall from './components/Mall'
+import footPrint from './components/FootPrint'
+import indexAdvertise from './components/IndexAdvertise'*/
 
 export default {
   name: 'App',
-  components: {Index, Footer, StoreList, Good, Store, Mall, FootPrint},
+  // components: {footer, storeList, good, store, mall, footPrint, indexAdvertise},
   data () {
     return {}
   },
@@ -69,7 +70,7 @@ export default {
   img {border:0 none;}
   em,i{ font-style:normal;}
   a {color:#000; text-decoration:none; outline: none;}
-  a {outline:none; star:expression_r(this.onFocus=this.blur());}
+  a {outline:none;}
   h1 { font-size:18px; }
   h2 { font-size:16px; }
   h3 { font-size:15px; }
@@ -77,4 +78,5 @@ export default {
   .clear { clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
   .w_640{ max-width:640px; min-width:320px; width:100%; margin:0 auto;}
   .Details_pic img{width: 100%; vertical-align: middle;}
+  .active{background: white;opacity: 1}
 </style>

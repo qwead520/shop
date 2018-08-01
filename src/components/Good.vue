@@ -118,7 +118,7 @@ import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'Good',
-  components: { GoodAttr, swiper, swiperSlide},
+  components: {GoodAttr, swiper, swiperSlide},
   data () {
     return {
       attrShow: false,
@@ -178,7 +178,8 @@ export default {
         paginationClickable: true,
         autoplay: {
           delay: 1500,
-          stopOnLastSlider: false
+          stopOnLastSlider: false,
+          disableOnInteraction: false
         },
         autoplayDisableOnInteraction: false,
         coverflow: {

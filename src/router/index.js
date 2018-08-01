@@ -1,13 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import vuex from 'vuex'
-import Index from '@/components/Index'
-import StoreList from '@/components/StoreList'
-import Mall from '@/components/Mall'
-import Footprint from '@/components/Footprint'
-import User from '@/components/User'
-import Store from '@/components/Store'
-import Good from '@/components/Good'
 Vue.use(Router)
 Vue.use(vuex)
 export default new Router({
@@ -15,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: Index
+      component: resolve => require(['@/components/Index'], resolve)
     },
     {
       path: '/storelist', redirect: '/storelist/0'
@@ -23,7 +16,7 @@ export default new Router({
     {
       path: '/storelist/:id',
       name: 'StoreList',
-      component: StoreList
+      component: resolve => require(['@/components/StoreList'], resolve)
     },
     {
       path: '/mall', redirect: '/mall/0'
@@ -31,17 +24,17 @@ export default new Router({
     {
       path: '/mall/:id',
       name: 'Mall',
-      component: Mall
+      component: resolve => require(['@/components/Mall'], resolve)
     },
     {
       path: '/footprint',
       name: 'Footprint',
-      component: Footprint
+      component: resolve => require(['@/components/Footprint'], resolve)
     },
     {
       path: '/user',
       name: 'User',
-      component: User
+      component: resolve => require(['@/components/User'], resolve)
     },
     {
       path: '/store', redirect: '/storelist/1'
@@ -49,12 +42,12 @@ export default new Router({
     {
       path: '/store/:id',
       name: 'Store',
-      component: Store
+      component: resolve => require(['@/components/Store'], resolve)
     },
     {
       path: '/good/:id',
       name: 'Good',
-      component: Good
+      component: resolve => require(['@/components/Good'], resolve)
     },
     {
       path: '*',

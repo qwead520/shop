@@ -205,7 +205,7 @@ export default {
     .suppliercontent{height: 100%;width: 96%;margin: 0 auto;padding: 20px 0 0 0}
     .supplierinfo{height:auto;width:100%;background-position: center;background-repeat: no-repeat;background-size: 100% 100%; border-radius: 30px 30px 0 0;text-align: center;border: 1px solid #d2d1d1;}
     .supplierlogo{height: 80px;width: 100%;text-align: center}
-    .supplierlogo img{height: 60px;width: 60px;padding: 15px;border:0;}
+    .supplierlogo img{height: 80px;width: 80px;padding: 15px;border:0;}
     .suppliername{font-size: 19px;color: #fff;font-weight: bold;font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     .supplierdesc{text-indent: 2em;color: #fff;font-size: 13px;text-overflow: ellipsis;height: 78px;width: 100%;word-wrap: break-word;word-break: break-all;overflow: scroll;}
     .bannergoodslist{height: 160px;width: 100%;border: 1px solid #d2d1d1;border-top: 0;}
