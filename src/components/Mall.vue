@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <div class="new_wap_con" style="max-width:100%;">
+    <div class="w_640">
+      <div class="w_640">
         <!--搜索框-->
         <div class="classify_top_bar">
           <div class="classify_back">
@@ -220,17 +220,6 @@ export default {
 </script>
 
 <style scoped>
-
-  html,body,div,span,h1,h2,h3,h4,p,em,img,dl,dt,dd,ol,ul,li,table,tr,th,td,form{margin:0;padding:0;border:0;}
-  html body{font:14px/1.5 '微软雅黑','宋体', arial, tahoma, simsun;color:#666;background:#fff;height:100%;}
-  .new_bod_bg{background-color:#eee;}
-  html{height:100%;}
-  ul,ol,li{list-style:none;text-align:left;}
-  img{vertical-align:top;border:0 none;}
-  input,label{vertical-align:middle;}
-  input{-webkit-appearance: none ;}
-  table{border-collapse:collapse;border-spacing:0;}
-  p,div{word-wrap:break-word;}
   .color{color:#019fe9;}
   .clear{clear:both;}
   .clearfix:before,.clearfix:after{content:' ';display:block;overflow:hidden;visibility:hidden;width:0;height:0;}
@@ -239,7 +228,6 @@ export default {
   .disp{display:none;}
   .new_wap_con{max-width:480px;min-width:320px;margin:0 auto;background-color:#fff;}
   .new_wap_con2{background-color:#eee;}
-  p{color:#333;}
   .hei_10{height:1px;width:100%;background-color:#eee;}
   .bai_heig{height:10px;}
   .top_border{}

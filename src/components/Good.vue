@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w_640">
         <!--返回上一页开始-->
         <div class="backtrack"><a v-on:click="$router.go(-1)" ></a></div>
         <!--返回上一页结束-->

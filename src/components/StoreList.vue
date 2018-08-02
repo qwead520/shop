@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative;overflow: hidden;">
+  <div style="position: relative;overflow: hidden;" class="w_640">
     <div class="hotsupplier">
       <div class="logo">
         <span>精选店铺</span>

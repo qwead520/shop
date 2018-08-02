@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w_640">
       <div class="container">
           <div class="tpl-shop">
               <div class="tpl-shop-topbar" style="background-color:#f8f8f8">

@@ -6,7 +6,9 @@ import vuex from 'vuex'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import './assets/css/common.css'
+const infiniteScroll = require('vue-infinite-scroll')
 Vue.use(vuex)
+Vue.use(infiniteScroll)
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
   error: require('@/assets/loading.gif'),

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w_640">
         I'm the {{ pageName }} page;
       <Footer></Footer>
     </div>

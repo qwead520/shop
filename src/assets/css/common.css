@@ -42,7 +42,7 @@ input[type="checkbox"]{appearance: none; -webkit-appearance: none;outline: none;
 
 textarea, input {word-wrap:break-word; word-break:break-all; padding:0px;}
 li {list-style-type:none;}
-img {border:0 none;}
+img {border:0 none;width: 100%; vertical-align: middle;}
 em,i{ font-style:normal;}
 a {color:#000; text-decoration:none; outline: none;}
 a {outline:none;}
@@ -52,5 +52,13 @@ h3 { font-size:15px; }
 h4 { font-size:14px; }
 .clear { clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
 .w_640{ max-width:640px; min-width:320px; width:100%; margin:0 auto;}
-.Details_pic img{width: 100%; vertical-align: middle;}
 .active{background: white;opacity: 1}
+html,body,div,span,h1,h2,h3,h4,p,em,img,dl,dt,dd,ol,ul,li,table,tr,th,td,form{margin:0;padding:0;border:0;}
+html{height:100%;}
+ul,ol,li{list-style:none;text-align:left;}
+img{vertical-align:top;border:0 none;}
+input,label{vertical-align:middle;}
+input{-webkit-appearance: none ;}
+table{border-collapse:collapse;border-spacing:0;}
+p,div{word-wrap:break-word;}
+p{color:#333;}

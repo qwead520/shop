@@ -27,10 +27,11 @@
 </template>
 
 <script>
-import {Swiper, SwiperSlider} from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
+import { Swiper, SwiperSlider } from 'vue-awesome-swiper'
 export default {
   name: 'IndexAdvertise',
-  components: {Swiper, SwiperSlider},
+  components: { Swiper, SwiperSlider },
   data () {
     return {
       // 左边入口
@@ -133,17 +134,9 @@ export default {
 </script>
 
 <style scoped>
-  /*品牌专区*/
-  .brand_Area{border-bottom: 2px solid #f4f4f4;}
-  .brand_event_title{ height: 45px; background: url(../assets/group_event_title.png) no-repeat center; background-size: 50%;}
   .adv_left a{ line-height: 0px; display: block;}
-  .adv_left{ width: 40%; height: 100%;float: left;}
+  .adv_left{ width: 30%; height: 100%;float: left;}
   .adv_left img{width: 100%;min-height: 115px;}
-
-  .home_brand_logo{ width: 60%; height: 100%; float: left;}
-  .home_brand_logo li{width: 33.33333333%; height: 50%; float: left;}
-  .home_brand_logo li a{width: 100%; height: 100%; line-height:0px; display:block;}
-  .home_brand_logo li a img{width: 100%; height: 100%; box-sizing:border-box;-moz-box-sizing:border-box; /* Firefox */-webkit-box-sizing:border-box; /* Safari *//* border:1px solid #f4f4f4;*/min-height: 125px;min-width: 125px;max-height: 125px;max-width: 125px;border-radius: 10px; }
 
   .adv_left{ width: 40%; height: 100%;float: left;}
   .adv_left a{ line-height: 0px; display: block;}
@@ -268,4 +261,5 @@ export default {
     color: #ccc;
     float: right;
   }
+  .active{background: white;opacity: 1}
 </style>
