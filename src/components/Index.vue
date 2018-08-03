@@ -23,12 +23,13 @@
             <a :href="item.goods_url">
               <img :src="item.goods_thumb">
               <h4>{{item.goods_name}}</h4>
-              <div class="list_content_price"><strong>￥{{item.goods_price}}</strong><span class="good_sales_num">{{item.goods_sales_num}}</span><div class="product_volume" style=""><em>已售</em><span>102</span></div></div>
+              <div class="list_content_price"><strong>￥{{item.goods_price}}</strong><span class="good_sales_num">已售{{item.goods_sales_num}}</span></div>
             </a>
           </li>
         </swiper-slide>
       </swiper>
     </div>
+    <nobr class="clear"></nobr>
     <img src="../assets/../assets/Discount_event.png" style="width: 99%;height: 100%"/>
     <div class="adv_left">
       <a :href="leftEnter" :title="leftDesc"><img :src="leftImg" :title="leftDesc" :alt="leftDesc"></a>
@@ -53,27 +54,28 @@
         </swiper-slide>
       </swiper>
     </div>
-      <h2 class="product_like_title"></h2>
-      <div class="product_list">
-        <ul>
-          <li v-for="(good, index) in indexGoods" :key="index">
-            <router-link :to="{ path: '/good/'+good.goods_id }" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-              <div class="countdown">
-                <span style="font-size:10px;">距结束:</span>
-                <span style="font-size:12px;" class="goods_time">{{good.goods_time}}</span>
-              </div>
-              <img :src="good.goods_thumb">
-              <h3>{{good.goods_name}} </h3>
-            </router-link>
-            <div class="product_price_info">
-              <div class="product_price"><span>{{good.shop_price}}</span>&nbsp;&nbsp;<del>{{good.market_price}}</del></div>
-              <div class="product_volume"><em>已售</em><span>{{good.goods_sales_num}}</span></div>
+    <h2 class="product_like_title"></h2>
+    <div class="product_list" >
+      <ul>
+        <li v-for="(good, index) in indexGoods" :key="index">
+          <router-link :to="{ path: '/good/'+good.goods_id }">
+            <div class="countdown">
+              <span style="font-size:10px;">距结束:</span>
+              <span style="font-size:12px;" class="goods_time">{{good.goods_time}}</span>
             </div>
-            <br>
-            <router-link to="{ path: '/store/'+good.supplier.suppliers_id }" class="Brand_store"><a>品牌</a><span>{{good.supplier.suppliers_name}}</span></router-link>
-          </li>
-        </ul>
-      </div>
+            <img :src="good.goods_thumb">
+            <h3>{{good.goods_name}} </h3>
+          </router-link>
+          <div class="product_price_info">
+            <div class="product_price"><span>{{good.shop_price}}</span>&nbsp;&nbsp;<del>{{good.market_price}}</del></div>
+            <div class="product_volume"><em>已售</em><span>{{good.goods_sales_num}}</span></div>
+          </div>
+          <br>
+          <router-link :to="{ path: '/store/'+ good.supplier.suppliers_id }" class="Brand_store"><a>品牌</a><span>{{good.supplier.suppliers_name}}</span></router-link>
+        </li>
+      </ul>
+      <div style="clear:both;" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20"></div>
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -82,8 +84,10 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Footer from '@/components/Footer'
+const infiniteScroll = require('vue-infinite-scroll')
 export default {
   name: 'Index',
+  directives: infiniteScroll,
   components: {
     Footer,
     swiper,
@@ -297,7 +301,9 @@ export default {
   },
   methods: {
     loadMore () {
-      this.getIndexGoods()
+      this.busy = true
+      this.indexGoods.push.apply(this.indexGoods,this.getIndexGoods())
+      this.busy = false
     },
     getIndexGoods () {
       return [
@@ -339,7 +345,7 @@ export default {
           goods_sales_num: 155,
           goods_time: '4:2:34',
           supplier: {
-            suppliers_id: 1,
+            suppliers_id: 2,
             suppliers_name: '香蕉计划品牌专卖店'
           }
         },
@@ -353,7 +359,7 @@ export default {
           goods_sales_num: 155,
           goods_time: '4:2:34',
           supplier: {
-            suppliers_id: 1,
+            suppliers_id: 3,
             suppliers_name: '香蕉计划品牌专卖店'
           }
         }

@@ -51,6 +51,16 @@ h2 { font-size:16px; }
 h3 { font-size:15px; }
 h4 { font-size:14px; }
 .clear { clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
+.clear:after,
+.clear:before
+{
+  content: " ";
+  display:table;
+}
+.clear:after
+{
+  clear:both;
+}
 .w_640{ max-width:640px; min-width:320px; width:100%; margin:0 auto;}
 .active{background: white;opacity: 1}
 html,body,div,span,h1,h2,h3,h4,p,em,img,dl,dt,dd,ol,ul,li,table,tr,th,td,form{margin:0;padding:0;border:0;}
@@ -61,4 +71,3 @@ input,label{vertical-align:middle;}
 input{-webkit-appearance: none ;}
 table{border-collapse:collapse;border-spacing:0;}
 p,div{word-wrap:break-word;}
-p{color:#333;}

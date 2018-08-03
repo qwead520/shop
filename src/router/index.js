@@ -11,7 +11,13 @@ export default new Router({
       component: resolve => require(['@/components/Index'], resolve)
     },
     {
-      path: '/storelist', redirect: '/storelist/0'
+      path: '/storelist',
+      redirect: {
+        name: 'StoreList',
+        params: {
+          id: 0
+        }
+      }
     },
     {
       path: '/storelist/:id',
@@ -19,7 +25,12 @@ export default new Router({
       component: resolve => require(['@/components/StoreList'], resolve)
     },
     {
-      path: '/mall', redirect: '/mall/0'
+      path: '/mall', redirect: {
+        name: 'Mall',
+        params: {
+          id: 0
+        }
+      }
     },
     {
       path: '/mall/:id',

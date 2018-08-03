@@ -11,7 +11,7 @@
         <!--左侧-->
         <div class="l_left" id="con_left">
           <ul class="job_sub">
-            <li v-for="cat in cat_list" :key="cat.cat_id" :class="{ on: selectCat(cat.cat_id) }" :id="cat.cat_id"> <router-link :to="{ path: '/mall/'+cat.cat_id }">{{cat.title}}</router-link></li>
+            <li v-for="cat in cat_list" :key="cat.cat_id" :class="{ on: selectCat(cat.cat_id) }" :id="cat.cat_id"> <router-link :to="{ name: 'Mall', params: cat.cat_id }">{{cat.title}}</router-link></li>
           </ul>
         </div>
         <!--右侧-->
@@ -20,7 +20,7 @@
             <div class="product_list">
               <ul>
                 <li v-for="good in goods_list" :key="good.goods_id">
-                  <router-link :to="{ path: '/good/'+good.goods_id }">
+                  <router-link :to="{ name: 'Good', params: good.goods_id }">
                     <img :src="good.goods_thumb">
                     <h3>{{good.goods_name}}</h3>
                   </router-link>
@@ -211,7 +211,7 @@ export default {
   computed: {
 
   },
-  beforeRouteUpdate (tp, from, next) {
+  beforeRouteUpdate (to, from, next) {
     this.goods_list = this.goods_list.splice(this.goods_list.length).concat(this.getGoodListById(this.$route.params.id))
     this.cat_list = this.cat_list.splice(this.cat_list.length).concat(this.getCatById(this.$route.params.id))
     next()
